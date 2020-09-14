@@ -1,4 +1,4 @@
-# hrms-frontend
+# Human Resource Management System UI
 
 ## Build Setup
 

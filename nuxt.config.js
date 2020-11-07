@@ -1,5 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 
+// nuxt config
 export default {
   /*
    ** Nuxt rendering mode

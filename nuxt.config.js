@@ -47,7 +47,7 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/vuetify', '@nuxt/pwa'],
+  buildModules: ['@nuxtjs/vuetify', '@nuxtjs/pwa'],
   /*
    ** Nuxt.js modules
    */

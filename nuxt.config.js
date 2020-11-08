@@ -17,15 +17,15 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: 'Human Resource Management | %s',
+    title: 'Projek',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
+        content: 'Aplikasi manajemen untuk ',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -47,7 +47,7 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/vuetify'],
+  buildModules: ['@nuxtjs/vuetify', '@nuxt/pwa'],
   /*
    ** Nuxt.js modules
    */
@@ -63,7 +63,7 @@ export default {
    */
   axios: {},
   /*
-   ** vuetify module configuration
+   ** Vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
@@ -83,6 +83,11 @@ export default {
       },
     },
   },
+  /*
+   ** PWA module configuration
+   ** https://pwa.nuxtjs.org/
+   */
+  pwa: {},
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/

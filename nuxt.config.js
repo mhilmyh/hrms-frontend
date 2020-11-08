@@ -64,7 +64,9 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.BASE_URL || 'http://localhost:8000',
+  },
   /*
    ** Vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -86,6 +88,30 @@ export default {
       },
     },
   },
+  /*
+   ** Auth module configuration
+   ** https://auth.nuxtjs.org/guide/setup.html
+   */
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/api/auth/login',
+            method: 'post',
+            propertyName: 'token',
+          },
+          logout: { url: '/api/auth/logout', method: 'post' },
+          user: { url: '/api/auth/user', method: 'get', propertyName: 'user' },
+        },
+      },
+    },
+  },
+
+  router: {
+    middleware: ['auth'],
+  },
+
   /*
    ** PWA module configuration
    ** https://pwa.nuxtjs.org/

@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <p>Please wait redirecting...</p>
+</template>
 
 <script>
 export default {}

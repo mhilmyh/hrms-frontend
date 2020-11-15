@@ -8,7 +8,7 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s | Hument',
-    title: 'hrms-frontend',
+    title: 'Human Resource Management',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -21,7 +21,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['~/plugins/axios'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -53,17 +53,6 @@ export default {
     treeShake: true,
     theme: {
       dark: false,
-      themes: {
-        light: {
-          primary: '#009688',
-          secondary: '#00bcd4',
-          accent: '#ff9800',
-          error: '#f44336',
-          warning: '#ffc107',
-          info: '#2196f3',
-          success: '#4caf50',
-        },
-      },
     },
   },
   // Auth module configuration (https://auth.nuxtjs.org/schemes/local.html#options)

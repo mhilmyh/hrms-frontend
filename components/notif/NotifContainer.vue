@@ -60,7 +60,7 @@
         <v-container fluid class="d-flex justify-center align-center">
           <v-img
             src="/general/bell.png"
-            max-width="36"
+            max-width="32"
             aspect-ratio="1"
             style="width: 100%"
           ></v-img>

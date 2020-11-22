@@ -16,7 +16,7 @@
         <v-list-item-avatar>
           <v-img
             :src="`/medal/medal-${index + 1}.png`"
-            max-width="36"
+            max-width="32"
             aspect-ratio="1"
             style="width: 100%"
           ></v-img>
@@ -27,9 +27,9 @@
             {{ item.job_position }}
           </v-list-item-subtitle>
           <v-list-item-subtitle>
-            <v-chip small color="accent" class="overline">{{
-              item.rating
-            }}</v-chip>
+            <v-chip small color="accent" class="overline">
+              {{ item.rating }}
+            </v-chip>
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>

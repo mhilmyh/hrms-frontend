@@ -6,6 +6,7 @@
           :loading="loading"
           v-model="count_employee"
           message="Total employee"
+          color="cyan lighten-2"
         ></summary-card>
       </v-col>
 
@@ -14,6 +15,7 @@
           :loading="loading"
           v-model="count_office"
           message="Total office"
+          color="teal lighten-2"
         ></summary-card>
       </v-col>
 
@@ -22,6 +24,7 @@
           :loading="loading"
           v-model="count_department"
           message="Total department"
+          color="green lighten-2"
         ></summary-card>
       </v-col>
 
@@ -30,6 +33,7 @@
           :loading="loading"
           v-model="count_timesheet"
           message="Total timesheet"
+          color="lime lighten-2"
         ></summary-card>
       </v-col>
     </v-row>

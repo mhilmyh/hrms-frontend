@@ -1,5 +1,6 @@
 <template>
   <v-card flat max-width="600px" class="pa-8">
+    <dark-theme-toggler></dark-theme-toggler>
     <v-card-title class="d-flex justify-center text-center">
       Welcome to Hument
     </v-card-title>
@@ -51,9 +52,6 @@ export default {
       },
     }
   },
-  mounted() {
-    console.log(this.$store.state.alert)
-  },
   methods: {
     async login() {
       if (!this.$refs.form.validate()) return
@@ -63,10 +61,7 @@ export default {
           data: this.user,
         })
       } catch (err) {
-        this.$store.dispatch('alert/show', {
-          type: 'error',
-          message: this.$helper.errMsg(err),
-        })
+        this.$helper.showError(err, this.$store)
       }
     },
   },

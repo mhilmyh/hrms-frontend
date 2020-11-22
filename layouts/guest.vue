@@ -4,7 +4,9 @@
       <v-main>
         <v-container
           fluid
-          class="d-flex justify-center align-center grey lighten-3 full-height ma-0 pa-8"
+          :class="`d-flex justify-center align-center grey ${
+            isDark ? 'darken' : 'lighten'
+          }-2 full-height ma-0 pa-8`"
         >
           <nuxt />
         </v-container>
@@ -13,8 +15,22 @@
   </v-theme-provider>
 </template>
 
-<style scoped>
+<script>
+export default {
+  computed: {
+    isDark() {
+      return this.$vuetify.theme.isDark
+    },
+  },
+}
+</script>
+
+<style>
 .full-height {
   height: 100%;
+}
+.v-card__text,
+.v-card__title {
+  word-break: normal; /* maybe !important  */
 }
 </style>

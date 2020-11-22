@@ -33,7 +33,7 @@
         </v-btn>
       </v-container>
       <v-container>
-        <v-btn outlined block to="/" exact>
+        <v-btn outlined block to="/dashboard" exact>
           <v-icon left>mdi-home</v-icon>
           Home
         </v-btn>

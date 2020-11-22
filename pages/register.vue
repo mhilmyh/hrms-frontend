@@ -1,5 +1,6 @@
 <template>
   <v-card flat max-width="1200px" class="pa-8">
+    <dark-theme-toggler></dark-theme-toggler>
     <v-card-title class="d-flex justify-center text-center">
       Register to Hument
     </v-card-title>

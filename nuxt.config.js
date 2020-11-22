@@ -21,7 +21,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/axios'],
+  plugins: ['~/plugins/axios', '~/plugins/rules', '~/plugins/helper'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -44,7 +44,9 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: process.env.BASE_URL || 'http://localhost:8000',
+    baseURL: process.env.BASE_URL
+      ? process.env.BASE_URL
+      : 'http://localhost:8000',
   },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
@@ -57,6 +59,12 @@ export default {
   },
   // Auth module configuration (https://auth.nuxtjs.org/schemes/local.html#options)
   auth: {
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/profile',
+    },
     strategies: {
       local: {
         endpoints: {

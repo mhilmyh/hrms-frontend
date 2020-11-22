@@ -1,19 +1,15 @@
 export const state = () => ({
   all: [],
-  current: {},
 })
 
 export const mutations = {
-  all(state, value = []) {
+  SET_TIMESHEETS(state, value = []) {
     state.all = value
-  },
-  current(state, value = {}) {
-    state.current = value
   },
 }
 
 export const actions = {
-  index({ commit, state }) {},
-  create({ commit, state }) {},
-  delete({ commit, state }) {},
+  async index({ commit, state }) {},
+  async create({ commit, state }) {},
+  async delete({ commit, state }) {},
 }

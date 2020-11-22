@@ -3,12 +3,12 @@ export const state = () => ({
 })
 
 export const mutations = {
-  all(state, value = []) {
+  SET_NOTIF(state, value = []) {
     state.all = value
   },
 }
 
 export const actions = {
-  index({ commit, state }) {},
-  delete({ commit, state }) {},
+  async index({ commit, state }) {},
+  async delete({ commit, state }) {},
 }

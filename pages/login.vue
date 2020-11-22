@@ -1,34 +1,79 @@
 <template>
-    <div id="app">
-        <v-flex class="grey lighten-4" style="height: 100vh">
-            <v-container class="text-center">
-                <v-card flat>
-                    <h1>Welcome!</h1>
-                    <v-form class="ma-8">
-                        <v-text-field rounded dense outlined name="Username" label="Username"></v-text-field>
-                        <v-text-field rounded dense outlined name="Password" label="Password" type="password"></v-text-field>
-                        <v-card-actions>
-                            <v-btn primary large block rounded 
-                            to= "/timesheet"
-                            class="blue white--text">Login</v-btn>
-                        </v-card-actions>
-                    </v-form>
-                    <p><a href="/register">Create an account</a></p>
-                </v-card>
-            </v-container>
-        </v-flex> 
-    </div>
+  <v-card flat max-width="600px" class="pa-8">
+    <v-card-title class="d-flex justify-center text-center">
+      Welcome to Hument
+    </v-card-title>
+    <v-card-subtitle class="d-flex justify-center text-center">
+      Human Resource Management System
+    </v-card-subtitle>
+    <alert-container></alert-container>
+    <v-form ref="form">
+      <v-text-field
+        v-model="user.email"
+        dense
+        outlined
+        :rules="$rules.email()"
+        name="email"
+        placeholder="Email"
+        prepend-inner-icon="mdi-email-outline"
+      ></v-text-field>
+      <v-text-field
+        v-model="user.password"
+        dense
+        outlined
+        :rules="$rules.password()"
+        name="password"
+        placeholder="Password"
+        prepend-inner-icon="mdi-lock-outline"
+        :append-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="visible ? 'text' : 'password'"
+        @click:append="visible = !visible"
+      ></v-text-field>
+    </v-form>
+    <v-card-actions class="px-0 py-1">
+      <v-btn color="primary" large block @click.stop="login()">login</v-btn>
+    </v-card-actions>
+    <v-container class="d-flex justify-center">
+      <v-btn text block color="primary" to="/register">register</v-btn>
+    </v-container>
+  </v-card>
 </template>
 
 <script>
-  export default {
-    layout: "empty",
-  }
-</script>
-
-<style>
-    div#app{
-        height: 100vh;
+export default {
+  layout: 'guest',
+  data() {
+    return {
+      visible: false,
+      user: {
+        email: '',
+        password: '',
+      },
     }
-</style>
+  },
+  mounted() {
+    console.log(this.$store.state.alert)
+  },
+  methods: {
+    async login() {
+      if (!this.$refs.form.validate()) return
 
+      try {
+        await this.$auth.loginWith('local', {
+          data: this.user,
+        })
+      } catch (err) {
+        this.$store.dispatch('alert/show', {
+          type: 'error',
+          message: this.$helper.errMsg(err),
+        })
+      }
+    },
+  },
+  head() {
+    return {
+      title: 'Login',
+    }
+  },
+}
+</script>

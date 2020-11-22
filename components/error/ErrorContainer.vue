@@ -10,7 +10,10 @@
       </p>
     </v-container>
     <v-container>
-      <v-sheet class="text-left blue-grey lighten-2" rounded>
+      <v-sheet
+        :class="`text-left blue-grey lighten-${isDark ? '1' : '5'}`"
+        rounded
+      >
         <v-container>
           <div
             class="text-overline"
@@ -30,7 +33,7 @@
         </v-btn>
       </v-container>
       <v-container>
-        <v-btn outlined block to="/" exact>
+        <v-btn outlined block to="/dashboard" exact>
           <v-icon left>mdi-home</v-icon>
           Home
         </v-btn>
@@ -48,6 +51,9 @@ export default {
   computed: {
     jsonError() {
       return JSON.stringify(this.$props.error, null, 4)
+    },
+    isDark() {
+      return this.$vuetify.theme.isDark
     },
   },
   methods: {

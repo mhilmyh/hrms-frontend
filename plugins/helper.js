@@ -1,3 +1,4 @@
+import moment from 'moment'
 class Helper {
   static deepCopy(thing = {}) {
     if (typeof thing !== 'object' || thing === null) return thing
@@ -41,6 +42,17 @@ class Helper {
     else if (!!err.message && typeof err.message === 'string')
       return err.message
     else return 'There was an error'
+  }
+
+  static showError(err, store) {
+    store.dispatch('alert/show', {
+      type: 'error',
+      message: Helper.errMsg(err),
+    })
+  }
+
+  static when(value) {
+    return moment(value).fromNow()
   }
 }
 

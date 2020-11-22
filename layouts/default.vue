@@ -14,8 +14,8 @@
           <v-list-item
             v-for="(item, i) in menu"
             :key="i"
-            active-class="primary"
-            color="white"
+            active-class="blue lighten-5"
+            color="black"
             :to="item.to"
             router
             exact
@@ -24,9 +24,9 @@
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="font-weight-light">{{
-                item.title
-              }}</v-list-item-title>
+              <v-list-item-title class="font-weight-light">
+                {{ item.title }}
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -36,11 +36,10 @@
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>{{ pageName }}</v-toolbar-title>
         <v-spacer />
-        <v-btn icon>
-          <v-icon>mdi-bell-outline</v-icon>
-        </v-btn>
-        <v-btn icon @click="switchLight()">
-          <v-icon>mdi-weather-sunny</v-icon>
+        <notif-container></notif-container>
+        <dark-theme-toggler></dark-theme-toggler>
+        <v-btn v-if="$auth.loggedIn" small text @click.stop="logout()">
+          logout
         </v-btn>
       </v-app-bar>
       <!-- Main Content -->
@@ -60,6 +59,11 @@ export default {
       drawer: false,
       menu: [
         {
+          icon: 'mdi-view-dashboard-outline',
+          title: 'Dashboard',
+          to: '/dashboard',
+        },
+        {
           icon: 'mdi-clipboard-check-outline',
           title: 'Daily Timesheet',
           to: '/timesheet',
@@ -74,11 +78,11 @@ export default {
           title: 'Manage Employee',
           to: '/employee',
         },
-        {
-          icon: 'mdi-face',
-          title: 'Profile',
-          to: '/profile',
-        },
+        // {
+        //   icon: 'mdi-face',
+        //   title: 'Profile',
+        //   to: '/profile',
+        // },
       ],
     }
   },
@@ -87,20 +91,21 @@ export default {
       return ''
     },
   },
-  mounted() {
-    this.loadPref()
-  },
   methods: {
-    switchLight() {
-      this.$vuetify.theme.isDark = !this.$vuetify.theme.isDark
-      if (localStorage) localStorage.setItem('dark', this.$vuetify.theme.isDark)
-    },
-    loadPref() {
-      if (localStorage) {
-        const isDark = localStorage.getItem('dark')
-        this.$vuetify.theme.isDark = isDark === 'true'
+    async logout() {
+      try {
+        await this.$auth.logout()
+      } catch (err) {
+        this.$helper.showError(err, this.$store)
       }
     },
   },
 }
 </script>
+
+<style>
+.v-card__text,
+.v-card__title {
+  word-break: normal; /* maybe !important  */
+}
+</style>

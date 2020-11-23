@@ -90,6 +90,7 @@
             dense
             outlined
             clearable
+            hide-details
             name="phone"
             placeholder="Phone"
             prepend-inner-icon="mdi-phone-outline"
@@ -101,6 +102,7 @@
             :rules="$rules.gender()"
             dense
             outlined
+            hide-details
             :items="genders"
             name="gender"
             placeholder="Gender"
@@ -120,6 +122,7 @@
             dense
             outlined
             clearable
+            hide-details
             name="country"
             placeholder="Country"
             prepend-inner-icon="mdi-flag-outline"
@@ -132,6 +135,7 @@
             dense
             outlined
             clearable
+            hide-details
             name="province"
             placeholder="Province"
             prepend-inner-icon="mdi-terrain"
@@ -144,6 +148,7 @@
             dense
             outlined
             clearable
+            hide-details
             name="city"
             placeholder="City"
             prepend-inner-icon="mdi-city-variant-outline"
@@ -156,18 +161,20 @@
             dense
             outlined
             clearable
+            hide-details
             name="postal_code"
             placeholder="Postal Code"
             prepend-inner-icon="mdi-post-outline"
           ></v-text-field>
         </v-col>
-        <v-col cols="12" sm="6" md="4">
+        <v-col cols="12" sm="6" md="8">
           <v-text-field
             v-model="user.street"
             :rules="$rules.street()"
             dense
             outlined
             clearable
+            hide-details
             name="street"
             placeholder="Street"
             prepend-inner-icon="mdi-road-variant"

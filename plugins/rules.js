@@ -58,6 +58,15 @@ class Rules {
   static adminSecret() {
     return [Validator.isRequired('admin secret')]
   }
+  static officeName() {
+    return [Validator.isRequired('office name')]
+  }
+  static officeId() {
+    return [Validator.isRequired('office')]
+  }
+  static chairman() {
+    return [Validator.isRequired('chairman')]
+  }
 }
 
 export default function (_, inject) {

@@ -13,6 +13,7 @@
         dense
         outlined
         clearable
+        hide-details
         placeholder="Birthday"
         :rules="rules"
         prepend-inner-icon="mdi-calendar"
@@ -45,8 +46,8 @@ export default {
     }
   },
   watch: {
-    date(value) {
-      this.$emit('input', value)
+    date(v) {
+      this.$emit('input', v)
     },
   },
 }

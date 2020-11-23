@@ -11,7 +11,7 @@
     </v-container>
     <v-container>
       <v-sheet
-        :class="`text-left blue-grey lighten-${isDark ? '1' : '5'}`"
+        :class="`text-left blue-grey lighten-${is_dark ? '1' : '5'}`"
         rounded
       >
         <v-container>
@@ -49,10 +49,7 @@ export default {
     error: { type: Object, default: null },
   },
   computed: {
-    jsonError() {
-      return JSON.stringify(this.$props.error, null, 4)
-    },
-    isDark() {
+    is_dark() {
       return this.$vuetify.theme.isDark
     },
   },

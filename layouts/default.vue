@@ -34,7 +34,7 @@
       <!-- App Bar -->
       <v-app-bar app flat color="primary" dark>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>{{ pageName }}</v-toolbar-title>
+        <v-toolbar-title>{{ page_name }}</v-toolbar-title>
         <v-spacer />
         <notif-container></notif-container>
         <dark-theme-toggler></dark-theme-toggler>
@@ -87,7 +87,7 @@ export default {
     }
   },
   computed: {
-    pageName() {
+    page_name() {
       return ''
     },
   },

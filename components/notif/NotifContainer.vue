@@ -87,8 +87,8 @@ export default {
     },
   },
   watch: {
-    menu(value) {
-      if (value === true) this.$store.dispatch('user/notif')
+    menu(v) {
+      if (v === true) this.$store.dispatch('user/notif')
     },
   },
   methods: {

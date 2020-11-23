@@ -52,6 +52,9 @@ export default {
     is_dark() {
       return this.$vuetify.theme.isDark
     },
+    isDark() {
+      return this.$vuetify.theme.isDark
+    },
   },
   methods: {
     reload() {

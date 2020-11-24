@@ -13,6 +13,10 @@ class Validator {
     return (v) =>
       /\+?([ -]?\d+)+|\(\d+\)([ -]\d+)/.test(v) || 'phone must be number'
   }
+  static isMaxFileSize(s) {
+    return (v) =>
+      !v || v.size < 1000000 * s || `image size should be less than ${s} MB`
+  }
 }
 
 class Rules {
@@ -66,6 +70,9 @@ class Rules {
   }
   static chairman() {
     return [Validator.isRequired('chairman')]
+  }
+  static imageAvatar() {
+    return [Validator.isRequired('image'), Validator.isMaxFileSize(3)]
   }
 }
 

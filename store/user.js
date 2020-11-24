@@ -16,7 +16,6 @@ export const actions = {
   async index({ commit }) {
     try {
       const res = await this.$axios.$get('/api/user')
-      console.log(res)
       commit('SET_USERS', res.users)
     } catch (err) {
       this.$helper.showError(err, this)
@@ -58,6 +57,33 @@ export const actions = {
     } finally {
       this.dispatch('loading/notif')
       this.dispatch('user/notif')
+    }
+  },
+
+  async upload(_, image) {
+    const data = new FormData()
+    data.set('image', image)
+
+    this.dispatch('loading/profile', true)
+    try {
+      const res = await this.$axios.$post('/api/image/profile', data)
+      this.$helper.showSuccess(res.message, this)
+      this.$auth.fetchUser()
+    } catch (err) {
+      this.$helper.showError(err, this)
+    } finally {
+      this.dispatch('loading/profile')
+    }
+  },
+
+  async rating(_, { id, value }) {
+    this.dispatch('loading/profile', true)
+    try {
+      await this.$axios.$put('/api/user', { id, rating: value })
+    } catch (err) {
+      this.$helper.showError(err, this)
+    } finally {
+      this.dispatch('loading/profile')
     }
   },
 }

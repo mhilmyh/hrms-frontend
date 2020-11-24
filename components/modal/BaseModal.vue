@@ -13,11 +13,7 @@
       <v-container>
         <alert-container></alert-container>
       </v-container>
-      <v-skeleton-loader
-        v-if="skeleton"
-        type="article, list-item-three-line, list-item-three-line, actions"
-      ></v-skeleton-loader>
-      <v-container fluid v-else>
+      <v-container>
         <slot></slot>
         <v-progress-linear
           v-if="loading"
@@ -35,7 +31,6 @@
 <script>
 export default {
   props: {
-    skeleton: Boolean,
     loading: Boolean,
     value: Boolean,
     src: String,

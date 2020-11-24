@@ -13,7 +13,7 @@
       </v-btn>
     </template>
 
-    <v-card min-width="200px">
+    <v-card min-width="240px" class="overflow-x-auto">
       <v-list>
         <v-list-item style="min-height: 0">
           <v-list-item-content class="my-0 py-0">
@@ -46,10 +46,21 @@
 
       <v-list v-else-if="notifications.length > 0">
         <v-list-item v-for="notif in notifications" :key="notif.id">
-          <v-list-item-content>notif</v-list-item-content>
+          <v-list-item-content
+            class="caption text-capitalize ma-1 overflow-x-auto"
+          >
+            {{ notif.message }}
+          </v-list-item-content>
           <v-list-item-action>
-            <v-btn icon @click="clearNotif(notif.id)">
-              <v-icon>mdi-close</v-icon>
+            <v-btn
+              fab
+              x-small
+              dark
+              :elevation="0"
+              color="green lighten-1"
+              @click="clearNotif(notif.id)"
+            >
+              <v-icon>mdi-check-circle-outline</v-icon>
             </v-btn>
           </v-list-item-action>
         </v-list-item>

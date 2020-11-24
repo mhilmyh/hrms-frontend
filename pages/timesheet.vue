@@ -14,11 +14,39 @@
 
     <v-tabs-items v-model="tabs" class="mt-8">
       <v-tab-item>
-        <v-row v-for="(timesheet, index) in today_timesheets" :key="index">
-          <v-col cols="12" sm="6" md="4" lg="3">
-            <timesheet-container :timesheet="timesheet"></timesheet-container>
-          </v-col>
-        </v-row>
+        <template v-if="!loading">
+          <v-row v-if="!!today_timesheets.length">
+            <v-col
+              v-for="(timesheet, index) in today_timesheets"
+              :key="index"
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+            >
+              <timesheet-container :timesheet="timesheet"></timesheet-container>
+            </v-col>
+          </v-row>
+          <v-row v-else>
+            <v-col cols="12">
+              <p class="text-center grey--text">There is no timesheet</p>
+            </v-col>
+          </v-row>
+        </template>
+        <template v-else>
+          <v-row>
+            <v-col
+              v-for="n in [1, 2, 3, 4]"
+              :key="n"
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+            >
+              <v-skeleton-loader type="card, paragraph"></v-skeleton-loader>
+            </v-col>
+          </v-row>
+        </template>
       </v-tab-item>
       <v-tab-item>
         <v-data-table
@@ -86,6 +114,9 @@ export default {
     },
     today_timesheets() {
       return this.$store.state.timesheet.today
+    },
+    loading() {
+      return this.$store.state.loading.timesheet
     },
   },
   mounted() {

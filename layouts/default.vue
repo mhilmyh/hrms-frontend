@@ -3,12 +3,7 @@
     <v-app>
       <!-- Drawer -->
       <v-navigation-drawer v-model="drawer" app temporary>
-        <v-container
-          class="text-center blue darken-1 blue--text text--lighten-5"
-        >
-          <h3>Hument</h3>
-          <p class="text-caption">Human Resource Management System</p>
-        </v-container>
+        <current-user-container></current-user-container>
         <v-divider />
         <v-list dense nav flat>
           <v-list-item
@@ -30,6 +25,15 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
+        <v-spacer></v-spacer>
+        <v-container
+          class="text-center blue darken-1 white--text footer-in-nav pa-4 ma-0"
+        >
+          <h3>Hument</h3>
+          <p class="caption">
+            Human Resource Management System Made by Kelompok 1 MPPL
+          </p>
+        </v-container>
       </v-navigation-drawer>
       <!-- App Bar -->
       <v-app-bar app flat color="primary" dark>
@@ -90,6 +94,9 @@ export default {
     page_name() {
       return ''
     },
+    user() {
+      return this.$auth.user
+    },
   },
   methods: {
     async logout() {
@@ -107,5 +114,9 @@ export default {
 .v-card__text,
 .v-card__title {
   word-break: normal; /* maybe !important  */
+}
+.footer-in-nav {
+  position: absolute;
+  bottom: 0;
 }
 </style>

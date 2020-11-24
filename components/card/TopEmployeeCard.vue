@@ -11,8 +11,17 @@
         style="width: 100%"
       ></v-img>
     </v-container>
-    <v-list v-if="!!items.length">
-      <v-list-item three-line v-for="(item, index) in items" :key="item.id">
+    <v-container v-if="is_admin" class="d-flex justify-center text-center">
+      <v-btn outlined color="error" x-small @click.stop="onReset()">
+        reset rating
+      </v-btn>
+    </v-container>
+    <v-list v-if="!!best_employee.length">
+      <v-list-item
+        three-line
+        v-for="(item, index) in best_employee"
+        :key="item.id"
+      >
         <v-list-item-avatar>
           <v-img
             :src="`/medal/medal-${index + 1}.png`"
@@ -39,10 +48,17 @@
 
 <script>
 export default {
-  props: {
-    items: {
-      type: Array,
-      default: [],
+  computed: {
+    is_admin() {
+      return this.$auth.user.is_admin
+    },
+    best_employee() {
+      return this.$store.state.dashboard.best_employee
+    },
+  },
+  methods: {
+    async onReset() {
+      await this.$store.dispatch('dashboard/reset')
     },
   },
 }

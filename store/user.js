@@ -13,21 +13,23 @@ export const mutations = {
 }
 
 export const actions = {
-  async index({ commit, state }) {},
+  async index({ commit }) {
+    try {
+      const res = await this.$axios.$get('/api/user')
+      console.log(res)
+      commit('SET_USERS', res.users)
+    } catch (err) {
+      this.$helper.showError(err, this)
+    }
+  },
 
   async register(_, data) {
     try {
       const res = await this.$axios.$post('/api/auth/register', { ...data })
-      this.dispatch('alert/show', {
-        type: 'success',
-        message: res.message,
-      })
+      this.$helper.showSuccess(res.message, this)
       this.$router.push({ path: '/login' })
     } catch (err) {
-      this.dispatch('alert/show', {
-        type: 'error',
-        message: this.$helper.errMsg(err),
-      })
+      this.$helper.showError(err, this)
     }
   },
 
@@ -41,10 +43,7 @@ export const actions = {
       const res = await this.$axios.$get('/api/auth/notification')
       commit('SET_NOTIF', res.notifications)
     } catch (err) {
-      this.dispatch('alert/show', {
-        type: 'error',
-        message: this.$helper.errMsg(err),
-      })
+      this.$helper.showError(err, this)
     } finally {
       this.dispatch('loading/notif')
     }
@@ -55,12 +54,10 @@ export const actions = {
     try {
       await this.$axios.$delete('/api/auth/notification/' + id)
     } catch (err) {
-      this.dispatch('alert/show', {
-        type: 'error',
-        message: this.$helper.errMsg(err),
-      })
+      this.$helper.showError(err, this)
     } finally {
       this.dispatch('loading/notif')
+      this.dispatch('user/notif')
     }
   },
 }

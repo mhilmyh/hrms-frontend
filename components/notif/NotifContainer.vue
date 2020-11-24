@@ -2,7 +2,6 @@
   <v-menu
     v-model="menu"
     open-on-focus
-    open-on-hover
     :close-on-click="false"
     :close-on-content-click="false"
     bottom
@@ -87,8 +86,8 @@ export default {
     },
   },
   watch: {
-    menu(value) {
-      if (value === true) this.$store.dispatch('user/notif')
+    menu(v) {
+      if (v === true) this.$store.dispatch('user/notif')
     },
   },
   methods: {

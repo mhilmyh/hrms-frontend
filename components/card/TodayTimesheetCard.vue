@@ -4,8 +4,14 @@
       <span class="text-center" style="width: 100%">Today Timesheet</span>
     </v-card-title>
 
-    <template v-if="!!items.length">
-      <v-card v-for="item in items" :key="item.id" flat outlined class="my-2">
+    <template v-if="!!latest_timesheet.length">
+      <v-card
+        v-for="item in latest_timesheet"
+        :key="item.id"
+        flat
+        outlined
+        class="my-2"
+      >
         <v-card-title>
           <v-container fluid class="pa-0 d-flex align-center">
             <v-chip
@@ -18,24 +24,34 @@
               {{ item.is_approved ? 'Approved' : 'Not Approved' }}
             </v-chip>
             <span class="caption">
-              Submitted {{ $helper.when(item.created_at) }}
+              {{ item.user.employee.full_name }}
             </span>
           </v-container>
         </v-card-title>
         <v-card-subtitle>
-          <p class="subtitle">{{ item.user.email }}</p>
+          <p class="subtitle">Submitted {{ $helper.when(item.created_at) }}</p>
         </v-card-subtitle>
       </v-card>
     </template>
+
+    <v-container class="pt-2 pb-8 px-0 d-flex justify-center">
+      <v-btn outlined color="error" x-small @click.stop="onClear()">
+        clear all timesheet
+      </v-btn>
+    </v-container>
   </v-card>
 </template>
 
 <script>
 export default {
-  props: {
-    items: {
-      type: Array,
-      default: [],
+  computed: {
+    latest_timesheet() {
+      return this.$store.state.dashboard.latest_timesheet
+    },
+  },
+  methods: {
+    async onClear() {
+      await this.$store.dispatch('timesheet/clear')
     },
   },
 }

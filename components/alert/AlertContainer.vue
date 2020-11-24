@@ -20,11 +20,11 @@ export default {
     }
   },
   watch: {
-    alert(value) {
-      if (value === false) this.$store.dispatch('alert/hide')
+    alert(v) {
+      if (v === false) this.$store.dispatch('alert/hide')
     },
-    '$store.state.alert.message'(value) {
-      this.alert = !!value
+    '$store.state.alert.message'(v) {
+      this.alert = !!v
     },
   },
 }

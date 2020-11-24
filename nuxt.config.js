@@ -80,6 +80,11 @@ export default {
     },
   },
 
+  // Router middleware
+  router: {
+    middleware: ['auth', 'reset'],
+  },
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 }

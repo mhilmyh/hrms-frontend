@@ -5,7 +5,7 @@
         <v-container
           fluid
           :class="`d-flex justify-center align-center grey ${
-            isDark ? 'darken' : 'lighten'
+            is_dark ? 'darken' : 'lighten'
           }-2 full-height ma-0 pa-8`"
         >
           <nuxt />
@@ -18,7 +18,7 @@
 <script>
 export default {
   computed: {
-    isDark() {
+    is_dark() {
       return this.$vuetify.theme.isDark
     },
   },

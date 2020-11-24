@@ -1,6 +1,11 @@
 <template>
   <v-container fluid>
     <v-row>
+      <v-col>
+        <alert-container></alert-container>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col cols="12" sm="6" md="3">
         <summary-card
           :loading="loading"
@@ -40,11 +45,11 @@
 
     <v-row>
       <v-col cols="12" sm="6">
-        <top-employee-card :items="best_employee"></top-employee-card>
+        <top-employee-card></top-employee-card>
       </v-col>
 
       <v-col cols="12" sm="6">
-        <today-timesheet-card :items="latest_timesheet"></today-timesheet-card>
+        <today-timesheet-card></today-timesheet-card>
       </v-col>
     </v-row>
   </v-container>
@@ -65,12 +70,7 @@ export default {
     count_timesheet() {
       return this.$store.state.dashboard.count_timesheet
     },
-    latest_timesheet() {
-      return this.$store.state.dashboard.latest_timesheet
-    },
-    best_employee() {
-      return this.$store.state.dashboard.best_employee
-    },
+
     loading() {
       return this.$store.state.loading.dashboard
     },

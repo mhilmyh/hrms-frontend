@@ -28,7 +28,7 @@ class Helper {
     for (key in thing) {
       value = thing[key]
       if (typeof value !== 'object') data.set(key, value)
-      else console.log(`Skip ${key} because the type is ${typeof value}`)
+      else console.log(`Skip ${key} because the type is object`)
     }
 
     return data
@@ -51,8 +51,75 @@ class Helper {
     })
   }
 
+  static showSuccess(message, store) {
+    store.dispatch('alert/show', {
+      type: 'success',
+      message,
+    })
+  }
+
   static when(value) {
     return moment(value).fromNow()
+  }
+
+  static verboseDate(value) {
+    return moment(value).format('MMMM d, YYYY')
+  }
+
+  static defaultOffice() {
+    return {
+      id: '',
+      name: '',
+      opening_time: '',
+      closing_time: '',
+      building: '',
+      is_branch: false,
+      country: '',
+      province: '',
+      city: '',
+      postal_code: '',
+      street: '',
+    }
+  }
+
+  static toOffice(item) {
+    return {
+      id: item.id,
+      name: item.name,
+      opening_time: String(item.opening_time).replace(/:00$/, ''),
+      closing_time: String(item.closing_time).replace(/:00$/, ''),
+      building: item.building,
+      is_branch: item.is_branch,
+      country: item.address.country,
+      province: item.address.province,
+      city: item.address.city,
+      postal_code: item.address.postal_code,
+      street: item.address.street,
+    }
+  }
+
+  static defaultDepartment() {
+    return {
+      id: '',
+      name: '',
+      code: '',
+      chairman_id: null,
+      office_id: null,
+    }
+  }
+
+  static toDepartment(item) {
+    return {
+      id: item.id,
+      name: item.name,
+      code: item.code,
+      chairman_id: item.chairman_id,
+      office_id: item.office_id,
+    }
+  }
+
+  static initActivity() {
+    return { desc: '', start_time: '', stop_time: '' }
   }
 }
 

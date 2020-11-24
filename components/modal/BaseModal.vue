@@ -1,8 +1,8 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="600px">
+  <v-dialog v-model="dialog" persistent max-width="1000px">
     <v-card>
       <v-card-title class="teal lighten-1 white--text">
-        <span class="title">
+        <span class="body-1">
           <slot name="title"></slot>
         </span>
         <v-spacer></v-spacer>

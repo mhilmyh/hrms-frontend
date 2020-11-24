@@ -20,6 +20,7 @@
           </v-col>
           <v-col cols="12" sm="6">
             <time-picker
+              v-model="office.opening_time"
               name="opening_time"
               placeholder="Opening Time"
               hint="The open hour of office"
@@ -28,6 +29,7 @@
           </v-col>
           <v-col cols="12" sm="6">
             <time-picker
+              v-model="office.closing_time"
               name="closing_time"
               placeholder="Closing Time"
               hint="The closing hour of office"
@@ -118,7 +120,11 @@
                 class="pa-0 ma-0"
                 v-model="office.is_branch"
                 inset
-                :label="office.is_branch ? 'Branch Office' : 'Head Office'"
+                :label="
+                  office.is_branch
+                    ? 'Register Branch Office'
+                    : 'Register Head Office'
+                "
               ></v-switch>
             </v-container>
           </v-col>
@@ -138,13 +144,10 @@ export default {
       type: String,
       default: 'Office',
     },
-    value: Object,
-    show: Boolean,
-  },
-  data() {
-    return {
-      dialog: false,
-      office: {
+    value: {
+      type: Object,
+      default: () => ({
+        id: null,
         name: '',
         opening_time: '',
         closing_time: '',
@@ -152,8 +155,28 @@ export default {
         is_branch: false,
         country: '',
         province: '',
+        city: '',
         postal_code: '',
         street: '',
+      }),
+    },
+    show: Boolean,
+  },
+  data() {
+    return {
+      dialog: false,
+      office: {
+        id: this.$props.value.id,
+        name: this.$props.value.name,
+        opening_time: this.$props.value.opening_time,
+        closing_time: this.$props.value.closing_time,
+        building: this.$props.value.building,
+        is_branch: this.$props.value.is_branch,
+        country: this.$props.value.country,
+        province: this.$props.value.province,
+        city: this.$props.value.city,
+        postal_code: this.$props.value.postal_code,
+        street: this.$props.value.street,
       },
     }
   },
@@ -174,6 +197,7 @@ export default {
     },
     show(v) {
       this.dialog = v
+      this.office = this.$helper.deepCopy(this.$props.value)
     },
   },
 }

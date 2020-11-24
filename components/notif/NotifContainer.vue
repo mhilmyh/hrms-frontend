@@ -2,7 +2,6 @@
   <v-menu
     v-model="menu"
     open-on-focus
-    open-on-hover
     :close-on-click="false"
     :close-on-content-click="false"
     bottom

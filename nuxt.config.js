@@ -82,7 +82,7 @@ export default {
 
   // Router middleware
   router: {
-    middleware: 'stats',
+    middleware: ['auth', 'reset'],
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

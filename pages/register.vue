@@ -208,6 +208,7 @@
 <script>
 export default {
   layout: 'guest',
+  auth: 'guest',
   data() {
     return {
       visible: false,

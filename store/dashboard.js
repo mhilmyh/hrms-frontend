@@ -25,9 +25,21 @@ export const actions = {
       const res = await this.$axios.$get('/api/dashboard')
       commit('SET_DASHBOARD', res)
     } catch (err) {
-      this.$helper.showError(err)
+      this.$helper.showError(err, this)
     } finally {
       this.dispatch('loading/dashboard')
+    }
+  },
+  async reset() {
+    this.dispatch('loading/dashboard', true)
+    try {
+      const res = await this.$axios.$delete('/api/dashboard/rating')
+      this.$helper.showSuccess(res.message, this)
+    } catch (err) {
+      this.$helper.showError(err, this)
+    } finally {
+      this.dispatch('loading/dashboard')
+      this.dispatch('dashboard/fetch')
     }
   },
 }

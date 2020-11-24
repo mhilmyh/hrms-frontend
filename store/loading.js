@@ -1,6 +1,7 @@
 export const state = () => ({
   dashboard: false,
   notif: false,
+  company: false,
   office: false,
   department: false,
   timesheet: false,
@@ -10,6 +11,9 @@ export const state = () => ({
 export const mutations = {
   SET_NOTIF(state, payload) {
     state.notif = payload
+  },
+  SET_COMPANY(state, payload) {
+    state.company = payload
   },
   SET_OFFICE(state, payload) {
     state.office = payload
@@ -31,6 +35,9 @@ export const mutations = {
 export const actions = {
   notif({ commit }, value = false) {
     commit('SET_NOTIF', value)
+  },
+  company({ commit }, value = false) {
+    commit('SET_COMPANY', value)
   },
   office({ commit }, value = false) {
     commit('SET_OFFICE', value)

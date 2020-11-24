@@ -15,7 +15,7 @@
               placeholder="Name"
               persistent-hint
               hint="The name of the department"
-              prepend-inner-icon="mdi-office-building-outline"
+              prepend-inner-icon="mdi-alpha-n-box-outline"
             ></v-text-field>
           </v-col>
           <v-col cols="12" sm="6">
@@ -29,7 +29,7 @@
               placeholder="Code"
               persistent-hint
               hint="The code of the department"
-              prepend-inner-icon="mdi-office-building-outline"
+              prepend-inner-icon="mdi-code-greater-than"
             ></v-text-field>
           </v-col>
           <v-col cols="12" sm="6">
@@ -40,9 +40,11 @@
               outlined
               hide-details
               :items="users"
+              item-value="id"
+              item-text="employee.full_name"
               name="chairman_id"
               placeholder="Chairman"
-              prepend-inner-icon="mdi-account-circle-outline"
+              prepend-inner-icon="mdi-account-tie-outline"
             ></v-select>
           </v-col>
           <v-col cols="12" sm="6">
@@ -53,6 +55,8 @@
               outlined
               hide-details
               :items="offices"
+              item-value="id"
+              item-text="name"
               name="office_id"
               placeholder="Office"
               prepend-inner-icon="mdi-office-building-outline"
@@ -74,17 +78,27 @@ export default {
       type: String,
       default: 'Office',
     },
-    value: Object,
+    value: {
+      type: Object,
+      default: () => ({
+        id: null,
+        name: '',
+        code: '',
+        chairman_id: null,
+        office_id: null,
+      }),
+    },
     show: Boolean,
   },
   data() {
     return {
       dialog: false,
       department: {
-        name: '',
-        code: '',
-        chairman_id: null,
-        office_id: null,
+        id: this.$props.value.id,
+        name: this.$props.value.name,
+        code: this.$props.value.code,
+        chairman_id: this.$props.value.chairman_id,
+        office_id: this.$props.value.office_id,
       },
     }
   },
@@ -107,10 +121,12 @@ export default {
       deep: true,
     },
     dialog(v) {
+      this.$store.dispatch('user/index')
       this.$emit('show', v)
     },
     show(v) {
       this.dialog = v
+      this.department = this.$helper.deepCopy(this.$props.value)
     },
   },
 }

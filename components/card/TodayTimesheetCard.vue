@@ -47,7 +47,13 @@
       </template>
 
       <v-container class="pt-2 pb-8 px-0 d-flex justify-center">
-        <v-btn outlined color="error" x-small @click.stop="onClear()">
+        <v-btn
+          v-if="is_admin"
+          outlined
+          color="error"
+          x-small
+          @click.stop="onClear()"
+        >
           clear timesheet
         </v-btn>
       </v-container>
@@ -63,6 +69,9 @@ export default {
     },
     loading() {
       return this.$store.state.loading.dashboard
+    },
+    is_admin() {
+      return this.$auth.user.is_admin
     },
   },
   methods: {

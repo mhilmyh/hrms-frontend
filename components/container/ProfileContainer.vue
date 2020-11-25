@@ -35,6 +35,7 @@
           <v-row>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.email"
                 dense
                 outlined
@@ -49,6 +50,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.password"
                 dense
                 outlined
@@ -67,6 +69,7 @@
 
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.first_name"
                 dense
                 outlined
@@ -80,6 +83,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.mid_name"
                 dense
                 outlined
@@ -93,6 +97,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.last_name"
                 dense
                 outlined
@@ -106,6 +111,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.phone"
                 dense
                 outlined
@@ -119,6 +125,7 @@
             </v-col>
             <v-col cols="12">
               <v-select
+                :disabled="!editable"
                 v-model="user.gender"
                 dense
                 outlined
@@ -131,10 +138,14 @@
               ></v-select>
             </v-col>
             <v-col cols="12">
-              <birthday-picker v-model="user.birthday"></birthday-picker>
+              <birthday-picker
+                :disabled="!editable"
+                v-model="user.birthday"
+              ></birthday-picker>
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.salary"
                 dense
                 outlined
@@ -151,6 +162,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.job_position"
                 dense
                 outlined
@@ -164,6 +176,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.rating"
                 dense
                 outlined
@@ -180,6 +193,7 @@
 
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.country"
                 dense
                 outlined
@@ -193,6 +207,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.province"
                 dense
                 outlined
@@ -206,6 +221,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.city"
                 dense
                 outlined
@@ -219,6 +235,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.postal_code"
                 dense
                 outlined
@@ -232,6 +249,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-model="user.street"
                 dense
                 outlined
@@ -245,6 +263,7 @@
             </v-col>
             <v-col cols="12">
               <v-select
+                :disabled="!editable"
                 v-model="user.supervisor_id"
                 dense
                 outlined
@@ -267,6 +286,7 @@
             </v-col>
             <v-col cols="12">
               <v-select
+                :disabled="!editable"
                 v-model="user.department_id"
                 dense
                 outlined
@@ -289,6 +309,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                :disabled="!editable"
                 v-if="$route.query.secret === 'admin'"
                 v-model="user.secret"
                 dense

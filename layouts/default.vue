@@ -27,9 +27,8 @@
         </v-list>
         <v-spacer></v-spacer>
         <v-container
-          class="text-center blue darken-1 white--text footer-in-nav pa-4 ma-0"
+          class="text-center blue darken-1 white--text footer-in-nav pa-2 ma-0"
         >
-          <h3>Hument</h3>
           <p class="caption">
             Human Resource Management System Made by Kelompok 1 MPPL R2
           </p>

@@ -67,7 +67,7 @@
     </v-card-text>
     <v-card-actions>
       <v-btn
-        v-if="!timesheet.is_approved"
+        v-if="!timesheet.is_approved && is_admin"
         block
         color="teal"
         small
@@ -84,6 +84,11 @@
 export default {
   props: {
     timesheet: Object,
+  },
+  computed: {
+    is_admin() {
+      return this.$auth.user.is_admin
+    },
   },
   methods: {
     async onApprove(id) {

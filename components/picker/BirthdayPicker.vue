@@ -4,11 +4,12 @@
     v-model="modal"
     :return-value.sync="date"
     persistent
-    width="280px"
+    width="300px"
     transition="scroll-y-transition"
   >
     <template v-slot:activator="{ on, attrs }">
       <v-text-field
+        :disabled="disabled"
         v-model="date"
         readonly
         dense
@@ -39,6 +40,7 @@ export default {
       type: Array,
       default: () => [],
     },
+    disabled: Boolean,
   },
   data() {
     return {

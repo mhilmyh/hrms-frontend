@@ -26,7 +26,6 @@ export const actions = {
     try {
       const res = await this.$axios.$post('/api/auth/register', { ...data })
       this.$helper.showSuccess(res.message, this)
-      this.$router.push({ path: '/login' })
     } catch (err) {
       this.$helper.showError(err, this)
     }

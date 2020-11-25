@@ -4,7 +4,7 @@
     v-model="modal"
     :return-value.sync="time"
     persistent
-    width="280px"
+    width="300px"
     transition="scroll-y-transition"
   >
     <template v-slot:activator="{ on, attrs }">

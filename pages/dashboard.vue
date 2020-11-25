@@ -78,5 +78,10 @@ export default {
   mounted() {
     this.$store.dispatch('dashboard/fetch')
   },
+  head() {
+    return {
+      title: 'Dashboard',
+    }
+  },
 }
 </script>

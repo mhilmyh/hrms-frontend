@@ -4,7 +4,8 @@
     v-model="modal"
     :return-value.sync="time"
     persistent
-    width="290px"
+    width="280px"
+    transition="scroll-y-transition"
   >
     <template v-slot:activator="{ on, attrs }">
       <v-text-field
@@ -13,7 +14,7 @@
         outlined
         clearable
         :name="name"
-        :placeholder="placeholder"
+        :placeholder="!!value ? value : placeholder"
         persistent-hint
         :hint="hint"
         :prepend-inner-icon="icon"

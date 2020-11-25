@@ -1,15 +1,25 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="1000px">
+  <v-dialog
+    v-model="dialog"
+    persistent
+    max-width="1000px"
+    transition="scroll-y-transition"
+  >
     <v-card>
-      <v-card-title class="teal lighten-1 white--text">
-        <span class="body-1">
-          <slot name="title"></slot>
-        </span>
-        <v-spacer></v-spacer>
-        <v-btn icon dark @click.stop="dialog = false">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
-      </v-card-title>
+      <div class="teal lighten-1 white--text">
+        <v-card-title>
+          <span class="text-capitalize">
+            <slot name="title"></slot>
+          </span>
+          <v-spacer></v-spacer>
+          <v-btn icon dark @click.stop="dialog = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-card-subtitle class="white--text">
+          <slot name="subtitle"></slot>
+        </v-card-subtitle>
+      </div>
       <v-container>
         <alert-container></alert-container>
       </v-container>

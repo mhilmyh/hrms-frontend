@@ -55,31 +55,22 @@
       </v-chip>
     </v-container>
     <v-container class="pb-0">
-      <v-btn outlined block x-small color="teal" @click.stop="onEdit()"
-        >edit</v-btn
-      >
+      <v-btn outlined block x-small color="teal" @click.stop="onEdit()">
+        edit
+      </v-btn>
     </v-container>
 
-    <v-dialog v-model="dialog.image" persistent max-width="600px">
-      <v-card>
-        <v-card-title class="teal lighten-1 white--text">
-          <span class="body-1"> Change Image </span>
-          <v-spacer></v-spacer>
-          <v-btn icon dark @click.stop="dialog.image = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </v-card-title>
-        <v-container>
-          <alert-container></alert-container>
-        </v-container>
-        <v-container fluid>
-          <image-upload v-model="image"></image-upload>
-        </v-container>
-        <v-card-actions>
-          <v-btn block dark color="teal" @click.stop="onUpload()">upload</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <image-upload
+      :show="dialog.image"
+      @show="dialog.image = $event"
+    ></image-upload>
+
+    <profile-container
+      :show="dialog.profile"
+      @show="dialog.profile = $event"
+      :value="profile"
+      :canUpdate="true"
+    ></profile-container>
   </v-container>
 </template>
 
@@ -91,7 +82,7 @@ export default {
       image: false,
       profile: false,
     },
-    image: null,
+    profile: {},
   }),
   computed: {
     email() {
@@ -128,10 +119,10 @@ export default {
     showOverlay() {
       this.overlay = !this.overlay
     },
-    async onUpload() {
-      await this.$store.dispatch('user/upload', this.image)
+    onEdit() {
+      this.profile = this.$helper.toUser(this.$auth.user)
+      this.dialog.profile = true
     },
-    onEdit() {},
   },
 }
 </script>

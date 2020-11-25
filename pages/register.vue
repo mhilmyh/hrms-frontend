@@ -24,6 +24,8 @@
             persistent-hint
             hint="Your active email"
             prepend-inner-icon="mdi-email-outline"
+            autofocus
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
@@ -41,6 +43,7 @@
             :append-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
             :type="visible ? 'text' : 'password'"
             @click:append="visible = !visible"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
 
@@ -55,6 +58,7 @@
             placeholder="First Name"
             persistent-hint
             hint="Please fill with your first name"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="4">
@@ -68,6 +72,7 @@
             placeholder="Mid Name"
             persistent-hint
             hint="Please fill this if you have middle name"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="4">
@@ -81,6 +86,7 @@
             placeholder="Last Name"
             persistent-hint
             hint="Please fill this if you have last name"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="4">
@@ -94,6 +100,7 @@
             name="phone"
             placeholder="Phone"
             prepend-inner-icon="mdi-phone-outline"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="4">
@@ -107,6 +114,7 @@
             name="gender"
             placeholder="Gender"
             prepend-inner-icon="mdi-gender-male-female"
+            @keydown.enter="register()"
           ></v-select>
         </v-col>
         <v-col cols="12" sm="6" md="4">
@@ -126,6 +134,7 @@
             name="country"
             placeholder="Country"
             prepend-inner-icon="mdi-flag-outline"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="4">
@@ -139,6 +148,7 @@
             name="province"
             placeholder="Province"
             prepend-inner-icon="mdi-terrain"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="4">
@@ -152,6 +162,7 @@
             name="city"
             placeholder="City"
             prepend-inner-icon="mdi-city-variant-outline"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="4">
@@ -165,6 +176,7 @@
             name="postal_code"
             placeholder="Postal Code"
             prepend-inner-icon="mdi-post-outline"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="8">
@@ -178,6 +190,7 @@
             name="street"
             placeholder="Street"
             prepend-inner-icon="mdi-road-variant"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
         <v-col cols="12">
@@ -190,6 +203,7 @@
             name="secret"
             placeholder="Admin Secret Key"
             prepend-inner-icon="mdi-shield-lock-outline"
+            @keydown.enter="register()"
           ></v-text-field>
         </v-col>
       </v-row>

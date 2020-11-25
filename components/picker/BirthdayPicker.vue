@@ -4,7 +4,8 @@
     v-model="modal"
     :return-value.sync="date"
     persistent
-    width="300px"
+    width="280px"
+    transition="scroll-y-transition"
   >
     <template v-slot:activator="{ on, attrs }">
       <v-text-field
@@ -14,7 +15,8 @@
         outlined
         clearable
         hide-details
-        placeholder="Birthday"
+        label="Birthday"
+        :placeholder="!!value ? value : 'Birthday'"
         :rules="rules"
         prepend-inner-icon="mdi-calendar"
         v-bind="attrs"
@@ -35,7 +37,7 @@ export default {
     value: String,
     rules: {
       type: Array,
-      default: [],
+      default: () => [],
     },
   },
   data() {

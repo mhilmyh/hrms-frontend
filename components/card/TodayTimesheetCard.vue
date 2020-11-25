@@ -48,7 +48,7 @@
 
       <v-container class="pt-2 pb-8 px-0 d-flex justify-center">
         <v-btn outlined color="error" x-small @click.stop="onClear()">
-          clear all timesheet
+          clear timesheet
         </v-btn>
       </v-container>
     </v-card>

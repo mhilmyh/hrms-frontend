@@ -12,7 +12,8 @@
                 outlined
                 clearable
                 :name="'desc_' + index"
-                :prefix="`Activity ${index + 1}. `"
+                :prefix="`${index + 1} . `"
+                :label="'Activity ' + (index + 1)"
                 placeholder="Description"
                 persistent-hint
                 hint="The description of activity"
@@ -93,7 +94,6 @@ export default {
   watch: {
     activities: {
       handler(v) {
-        console.log(v)
         this.$emit('input', v)
       },
       deep: true,

@@ -121,6 +121,38 @@ class Helper {
   static initActivity() {
     return { desc: '', start_time: '', stop_time: '' }
   }
+
+  static toUser(user) {
+    return {
+      id: user.id,
+
+      email: user.email,
+      password: '',
+      secret: '',
+
+      first_name: user.employee.first_name,
+      mid_name: user.employee.mid_name,
+      last_name: user.employee.last_name,
+      phone: user.employee.phone,
+      gender: user.employee.gender,
+      birthday: user.employee.birthday,
+      salary: user.employee.salary, // only editable by admin
+      job_position: user.employee.job_position,
+      rating: Number(user.employee.rating), // only editable by admin
+
+      country: user.employee.address.country,
+      province: user.employee.address.province,
+      city: user.employee.address.city,
+      postal_code: user.employee.address.postal_code,
+      street: user.employee.address.street,
+      image_url: !!user.employee.image ? user.employee.image.url : '',
+
+      supervisor_id: user.employee.supervisor_id,
+      department_id: user.employee.department_id,
+
+      updated_at: user.updated_at,
+    }
+  }
 }
 
 export default function (_, inject) {

@@ -157,6 +157,7 @@ export default {
       }),
     },
     show: Boolean,
+    onClick: Function,
   },
   data() {
     return {

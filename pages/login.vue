@@ -17,6 +17,7 @@
         name="email"
         placeholder="Email"
         prepend-inner-icon="mdi-email-outline"
+        autofocus
       ></v-text-field>
       <v-text-field
         v-model="user.password"
@@ -29,6 +30,7 @@
         :append-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
         :type="visible ? 'text' : 'password'"
         @click:append="visible = !visible"
+        @keydown.enter="login()"
       ></v-text-field>
     </v-form>
     <v-card-actions class="px-0 py-1">

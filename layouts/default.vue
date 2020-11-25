@@ -31,7 +31,7 @@
         >
           <h3>Hument</h3>
           <p class="caption">
-            Human Resource Management System Made by Kelompok 1 MPPL
+            Human Resource Management System Made by Kelompok 1 MPPL R2
           </p>
         </v-container>
       </v-navigation-drawer>
@@ -40,10 +40,13 @@
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>{{ page_name }}</v-toolbar-title>
         <v-spacer />
+        <v-btn icon @click.stop="refresh()">
+          <v-icon>mdi-refresh</v-icon>
+        </v-btn>
         <notif-container></notif-container>
         <dark-theme-toggler></dark-theme-toggler>
-        <v-btn v-if="$auth.loggedIn" small text @click.stop="logout()">
-          logout
+        <v-btn v-if="$auth.loggedIn" icon @click.stop="logout()">
+          <v-icon>mdi-logout-variant</v-icon>
         </v-btn>
       </v-app-bar>
       <!-- Main Content -->
@@ -82,11 +85,6 @@ export default {
           title: 'Manage Employee',
           to: '/employee',
         },
-        // {
-        //   icon: 'mdi-face',
-        //   title: 'Profile',
-        //   to: '/profile',
-        // },
       ],
     }
   },
@@ -99,6 +97,9 @@ export default {
     },
   },
   methods: {
+    refresh() {
+      this.$router.go(0)
+    },
     async logout() {
       try {
         await this.$auth.logout()

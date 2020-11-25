@@ -45,7 +45,14 @@
               name="chairman_id"
               placeholder="Chairman"
               prepend-inner-icon="mdi-account-tie-outline"
-            ></v-select>
+            >
+              <template v-slot:item="{ item }">
+                <item-text-container
+                  :sub="item.email"
+                  :main="item.employee.full_name"
+                ></item-text-container>
+              </template>
+            </v-select>
           </v-col>
           <v-col cols="12" sm="6">
             <v-select
@@ -60,7 +67,14 @@
               name="office_id"
               placeholder="Office"
               prepend-inner-icon="mdi-office-building-outline"
-            ></v-select>
+            >
+              <template v-slot:item="{ item }">
+                <item-text-container
+                  :sub="item.is_branch ? 'Branch' : 'Head'"
+                  :main="item.name"
+                ></item-text-container>
+              </template>
+            </v-select>
           </v-col>
         </v-row>
       </template>
@@ -89,6 +103,7 @@ export default {
       }),
     },
     show: Boolean,
+    onClick: Function,
   },
   data() {
     return {

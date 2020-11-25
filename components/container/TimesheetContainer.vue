@@ -87,7 +87,6 @@ export default {
   },
   methods: {
     async onApprove(id) {
-      console.log(id)
       await this.$store.dispatch('timesheet/approve', id)
     },
   },

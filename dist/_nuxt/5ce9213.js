@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{708:function(e,t,n){"use strict";n.r(t);n(25),n(56);var r={mounted:function(){this.$router.replace("/login")}},l=n(29),component=Object(l.a)(r,(function(){var e=this.$createElement;return(this._self._c||e)("p",[this._v("Please wait redirecting...")])}),[],!1,null,null,null);t.default=component.exports}}]);

@@ -12,7 +12,19 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Human Resource Management',
+      },
+      { hid: 'og:title', property: 'og:title', content: 'Hument' },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: 'Human Resource Management',
+      },
+      { hid: 'og:locale', property: 'og:locale', content: 'en_US' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -42,6 +54,8 @@ export default {
     '@nuxtjs/pwa',
     // https://auth.nuxtjs.org/guide/setup.html
     '@nuxtjs/auth',
+    // https://www.npmjs.com/package/@nuxtjs/sitemap#sitemap-options
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -80,6 +94,11 @@ export default {
         },
       },
     },
+  },
+
+  // Sitemap module
+  sitemap: {
+    hostname: 'https://mppl.hilmy.website',
   },
 
   // Router middleware

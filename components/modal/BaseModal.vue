@@ -3,9 +3,9 @@
     v-model="dialog"
     persistent
     max-width="1000px"
-    transition="scroll-y-transition"
+    transition="fade-transition"
   >
-    <v-card>
+    <v-card flat>
       <div class="teal lighten-1 white--text">
         <v-card-title>
           <span class="text-capitalize">

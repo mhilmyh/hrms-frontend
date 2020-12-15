@@ -1,18 +1,14 @@
 export default function ({ $axios }) {
-  $axios.onRequest((config) => {
+  $axios.onRequest((_conf) => {
     // console.log('[plugin:axios] Axios config')
-    // console.log(config)
   })
-  $axios.onResponse((response) => {
+  $axios.onResponse((_res) => {
     // console.log('[plugin:axios] Axios response')
-    // console.log(response)
   })
-  $axios.onRequestError((error) => {
+  $axios.onRequestError((_err) => {
     // console.log('[plugin:axios] Axios request error')
-    // console.error(error)
   })
-  $axios.onResponseError((error) => {
+  $axios.onResponseError((_err) => {
     // console.log('[plugin:axios] Axios response error')
-    // console.error(error)
   })
 }

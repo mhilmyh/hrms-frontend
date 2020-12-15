@@ -15,9 +15,6 @@ export const mutations = {
 
 export const actions = {
   show({ commit }, payload) {
-    console.log(
-      `[store:alert] show alert with type: ${payload.type} and message: ${payload.message}`
-    )
     commit('SET_ALERT_MESSAGE', payload)
   },
   hide({ commit }) {

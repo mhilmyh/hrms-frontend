@@ -15,13 +15,13 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Human Resource Management',
+        content: 'Human Resource Management System',
       },
       { hid: 'og:title', property: 'og:title', content: 'Hument' },
       {
         hid: 'og:description',
         property: 'og:description',
-        content: 'Human Resource Management',
+        content: 'Human Resource Management System',
       },
       { hid: 'og:locale', property: 'og:locale', content: 'en_US' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
@@ -107,5 +107,13 @@ export default {
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    terser: {
+      terserOptions: {
+        compress: {
+          drop_console: true,
+        },
+      },
+    },
+  },
 }

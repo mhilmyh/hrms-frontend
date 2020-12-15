@@ -19,7 +19,6 @@ export const actions = {
       const res = await this.$axios.$get('/api/timesheet')
       commit('SET_TIMESHEETS', res.timesheets)
       commit('SET_TODAY', res.today_timesheets)
-      console.log(res)
     } catch (err) {
       this.$helper.showError(err, this)
     } finally {

@@ -33,18 +33,12 @@ export const actions = {
 
   async update(_, user) {
     const data = {}
-
     for (let key in user) {
-      console.log(key, key === 'email', user.email !== this.$auth.user.email)
       if (key === 'email' && user[key] !== this.$auth.user.email)
         data[key] = user[key]
-
       if (key === 'email') continue
-
       if (!!user[key] || typeof user[key] === 'number') data[key] = user[key]
     }
-
-    console.log('[store:user] Update', user, this.$auth.user)
     this.dispatch('loading/profile', true)
     try {
       const res = await this.$axios.$put('/api/user/' + user.id, { ...data })

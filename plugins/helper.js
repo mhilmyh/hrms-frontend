@@ -23,14 +23,12 @@ class Helper {
 
   static formData(thing = {}) {
     const data = new FormData()
-
     let value, key
     for (key in thing) {
       value = thing[key]
       if (typeof value !== 'object') data.set(key, value)
-      else console.log(`Skip ${key} because the type is object`)
+      else console.log(`Skip ${key}`)
     }
-
     return data
   }
 

@@ -3,15 +3,21 @@ class Validator {
     return (v) => !!v || `${name} is required`
   }
   static isEmailValid() {
-    return (v) => /.+@.+\..+/.test(v) || 'email must be valid'
+    return (v) =>
+      (!!v && typeof v === 'string' && /.+@.+\..+/.test(v)) ||
+      'email must be valid'
   }
   static isMinLen(name = '', len = 20) {
     return (v) =>
-      v.length >= len || `${name} must have more than ${len} characters`
+      (!!v && typeof v === 'string' && v.length >= len) ||
+      `${name} must have more than ${len} characters`
   }
   static isPhone() {
     return (v) =>
-      /\+?([ -]?\d+)+|\(\d+\)([ -]\d+)/.test(v) || 'phone must be number'
+      (!!v &&
+        typeof v === 'string' &&
+        /\+?([ -]?\d+)+|\(\d+\)([ -]\d+)/.test(v)) ||
+      'phone must be number'
   }
   static isMaxFileSize(s) {
     return (v) =>

@@ -13,7 +13,7 @@
         ></v-img>
       </v-container>
       <v-container v-if="is_admin" class="d-flex justify-center text-center">
-        <v-btn outlined color="error" x-small @click.stop="onReset()">
+        <v-btn outlined color="error" x-small @click.stop="sure = true">
           reset rating
         </v-btn>
       </v-container>
@@ -46,11 +46,21 @@
       </v-list>
     </v-card>
     <v-skeleton-loader v-else type="card, paragraph"></v-skeleton-loader>
+    <are-you-sure
+      v-model="sure"
+      title="Reset Top Employee Rating"
+      :fn="onReset"
+    ></are-you-sure>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      sure: false,
+    }
+  },
   computed: {
     is_admin() {
       return this.$auth.user.is_admin

@@ -52,17 +52,27 @@
           outlined
           color="error"
           x-small
-          @click.stop="onClear()"
+          @click.stop="sure = true"
         >
           clear timesheet
         </v-btn>
       </v-container>
     </v-card>
+    <are-you-sure
+      v-model="sure"
+      title="Clear All Timesheet"
+      :fn="onClear"
+    ></are-you-sure>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      sure: false,
+    }
+  },
   computed: {
     latest_timesheet() {
       return this.$store.state.dashboard.latest_timesheet

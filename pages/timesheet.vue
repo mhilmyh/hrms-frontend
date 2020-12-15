@@ -69,7 +69,7 @@
               icon
               outlined
               class="ma-1"
-              @click.stop="onDelete(item.id)"
+              @click.stop="areYouSureDelete(item.id)"
             >
               <v-icon small>mdi-delete</v-icon>
             </v-btn>
@@ -77,6 +77,12 @@
         </v-data-table>
       </v-tab-item>
     </v-tabs-items>
+
+    <are-you-sure
+      v-model="sure"
+      title="Delete Timesheet"
+      :fn="onDelete"
+    ></are-you-sure>
 
     <timesheet-modal
       title="Daily Timesheet"
@@ -95,7 +101,9 @@ export default {
   data() {
     return {
       tabs: 0,
+      sure: false,
       modal: false,
+      currentId: null,
       activities: [{ desc: '', start_time: '', stop_time: '' }],
       headers: [
         { text: 'Employee', value: 'user.employee.full_name' },
@@ -122,15 +130,24 @@ export default {
   mounted() {
     this.$store.dispatch('timesheet/index')
   },
+  watch: {
+    sure(v) {
+      if (!v) this.currentId = null
+    },
+  },
   methods: {
+    areYouSureDelete(id) {
+      this.sure = true
+      this.currentId = id
+    },
     onClick() {
       this.modal = true
     },
     async onSubmit() {
       await this.$store.dispatch('timesheet/create', this.activities)
     },
-    async onDelete(id) {
-      await this.$store.dispatch('timesheet/delete', id)
+    async onDelete() {
+      await this.$store.dispatch('timesheet/delete', this.currentId)
     },
   },
   head: () => ({

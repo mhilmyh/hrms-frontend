@@ -92,11 +92,14 @@ export default {
       return this.$auth.user.employee.full_name
     },
     image_url() {
-      if (this.$auth.user.employee.image)
+      if (!!this.$auth.user && this.$auth.user.employee.image)
         return this.$auth.user.employee.image.url
-      else if (this.$auth.user.employee.gender === 'Male')
+      else if (!!this.$auth.user && this.$auth.user.employee.gender === 'Male')
         return '/avatar/man.png'
-      else if (this.$auth.user.employee.gender === 'Female')
+      else if (
+        !!this.$auth.user &&
+        this.$auth.user.employee.gender === 'Female'
+      )
         return '/avatar/woman.png'
       else return '/general/placeholder.png'
     },
@@ -104,7 +107,7 @@ export default {
       return this.$auth.user.employee.rating
     },
     job_position() {
-      if (this.$auth.user.employee.job_position)
+      if (!!this.$auth.user && this.$auth.user.employee.job_position)
         return this.$auth.user.employee.job_position
       return 'Unassigned'
     },

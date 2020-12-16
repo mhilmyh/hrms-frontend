@@ -38,7 +38,7 @@
               icon
               outlined
               class="ma-1"
-              @click.stop="onDelete('department', item.id)"
+              @click.stop="areYouSure('department', item.id)"
             >
               <v-icon small>mdi-delete</v-icon>
             </v-btn>
@@ -75,7 +75,7 @@
               icon
               outlined
               class="ma-1"
-              @click.stop="onDelete('office', item.id)"
+              @click.stop="areYouSure('office', item.id)"
             >
               <v-icon small>mdi-delete</v-icon>
             </v-btn>
@@ -107,6 +107,18 @@
         {{ mode }}
       </v-btn>
     </department-modal>
+
+    <are-you-sure
+      v-model="sure.office"
+      title="Delete Office"
+      :fn="onDelete"
+    ></are-you-sure>
+
+    <are-you-sure
+      v-model="sure.department"
+      title="Delete Department"
+      :fn="onDelete"
+    ></are-you-sure>
   </v-container>
 </template>
 
@@ -117,6 +129,12 @@ export default {
     tabs: 0,
     mode: 'store',
     modal: {
+      office: false,
+      department: false,
+    },
+    currentId: null,
+    currentType: null,
+    sure: {
       office: false,
       department: false,
     },
@@ -155,6 +173,20 @@ export default {
   mounted() {
     this.$store.dispatch('company/index')
   },
+  watch: {
+    'sure.office'(v) {
+      if (v === false) {
+        this.currentId = null
+        this.currentType = null
+      }
+    },
+    'sure.department'(v) {
+      if (v === false) {
+        this.currentId = null
+        this.currentType = null
+      }
+    },
+  },
   methods: {
     onEdit(item) {
       this.mode = 'update'
@@ -176,12 +208,21 @@ export default {
     },
     async onClick(type) {
       await this.$store.dispatch('company/' + this.mode, {
-        type,
         [type]: this[type],
+        type,
       })
     },
-    async onDelete(type, id) {
-      await this.$store.dispatch('company/delete', { type, id })
+    onDelete() {
+      if (this.currentId !== null && this.currentType !== null)
+        this.$store.dispatch('company/delete', {
+          type: this.currentType,
+          id: this.currentId,
+        })
+    },
+    areYouSure(type, id) {
+      this.currentId = id
+      this.currentType = type
+      this.sure[type] = true
     },
   },
   head: () => ({

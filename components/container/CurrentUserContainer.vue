@@ -86,10 +86,16 @@ export default {
   }),
   computed: {
     email() {
-      return this.$auth.user.email
+      if (!!this.$auth.user) {
+        return this.$auth.user.email
+      }
+      return ''
     },
     full_name() {
-      return this.$auth.user.employee.full_name
+      if (!!this.$auth.user && !!this.$auth.user.employee) {
+        return this.$auth.user.employee.full_name
+      }
+      return ''
     },
     image_url() {
       if (!!this.$auth.user && this.$auth.user.employee.image)
@@ -104,7 +110,10 @@ export default {
       else return '/general/placeholder.png'
     },
     rating() {
-      return this.$auth.user.employee.rating
+      if (!!this.$auth.user && !!this.$auth.user.employee) {
+        return this.$auth.user.employee.rating
+      }
+      return 0
     },
     job_position() {
       if (!!this.$auth.user && this.$auth.user.employee.job_position)

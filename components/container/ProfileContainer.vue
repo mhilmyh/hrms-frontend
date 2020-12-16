@@ -322,7 +322,7 @@
     </template>
     <template v-slot:actions>
       <v-row class="pa-0 ma-0">
-        <v-col cols="6">
+        <v-col>
           <v-btn
             v-if="canUpdate || is_admin"
             block
@@ -333,14 +333,8 @@
             update
           </v-btn>
         </v-col>
-        <v-col cols="6">
-          <v-btn
-            v-if="is_admin"
-            block
-            color="red"
-            dark
-            @click.stop="sure = true"
-          >
+        <v-col v-if="is_admin && !mySelf">
+          <v-btn block color="red" dark @click.stop="sure = true">
             delete
           </v-btn>
         </v-col>
@@ -416,7 +410,13 @@ export default {
       return this.$auth.user.is_admin
     },
     preview() {
-      return this.user.image_url
+      if (this.user.image_url) {
+        return this.user.image_url
+      } else if (this.user.gender === 'Male') {
+        return '/avatar/man.png'
+      } else if (this.user.gender === 'Female') {
+        return '/avatar/woman.png'
+      } else return '/general/placeholder.png'
     },
     users() {
       return this.$store.state.user.all
@@ -426,6 +426,11 @@ export default {
     },
     editable() {
       return this.$props.canUpdate || this.$auth.user.is_admin
+    },
+    mySelf() {
+      if (!!this.$props.value && !!this.$auth.user)
+        return this.$props.value.id === this.$auth.user.id
+      return false
     },
   },
   watch: {
@@ -439,17 +444,20 @@ export default {
       if (typeof v === 'string') this.user.rating = parseInt(v, 10)
     },
     value(v) {
-      this.user = v
+      this.user = this.$helper.deepCopy(v)
     },
   },
   methods: {
     async onUpdate() {
-      await this.$store.dispatch('user/update', this.user)
+      const updated = this.$helper.deepCopy(this.user)
+      if (this.user.email === this.$props.value.email) {
+        delete updated.email
+      }
+      await this.$store.dispatch('user/update', updated)
     },
     async onDelete() {
       await this.$store.dispatch('user/delete', this.user.id)
     },
-    async areYouSuer(fn) {},
   },
 }
 </script>

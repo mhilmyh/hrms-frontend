@@ -60,7 +60,7 @@
     </v-card>
     <are-you-sure
       v-model="sure"
-      title="Clear All Timesheet"
+      title="Clear All Timesheet From Begining"
       :fn="onClear"
     ></are-you-sure>
   </div>

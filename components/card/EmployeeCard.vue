@@ -94,6 +94,11 @@ export default {
       return this.$store.state.loading.profile
     },
   },
+  watch: {
+    async dialog(_) {
+      await this.$store.dispatch('alert/hide')
+    },
+  },
   methods: {
     async vote(v = 0) {
       await this.$store.dispatch('user/update', {

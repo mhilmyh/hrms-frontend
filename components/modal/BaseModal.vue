@@ -55,6 +55,7 @@ export default {
       this.dialog = v
     },
     dialog(v) {
+      if (v === false) this.$store.dispatch('alert/hide')
       this.$emit('input', v)
     },
   },
